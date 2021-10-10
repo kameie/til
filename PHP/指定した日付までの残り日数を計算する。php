@@ -1,0 +1,18 @@
+<?
+
+$expiration_date = '2022/7/3';
+$unix_expiration = strtotime($expiration_date);
+$now = strtotime('now');
+$date_interval = round(($unix_expiration - $now) / (60*60*24));
+if ($date_interval > 0) {
+	$date_counter = '（残り '.$date_interval.' 日）';
+} elseif ($date_interval == 0) {
+	$date_counter = '（今日まで！）';
+} elseif ($date_interval < 1) {
+	$date_counter = '（ '.-$date_interval.' 日オーバー！）';
+} else {
+	$date_counter = '(エラー：日数計算に失敗)';
+}
+echo $expiration_date.$date_counter;
+
+?>
